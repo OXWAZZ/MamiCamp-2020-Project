@@ -15,9 +15,9 @@ class ProjectsController extends Controller
 
     public function show (Project $project) {
 
-        // if (auth()->id() !== $project->owner_id) {
-        //     abort(403);
-        // }
+        if (auth()->id() != $project->owner_id) {
+            abort(403);
+        }
 
         return view('projects.show', compact('project'));
     }
@@ -29,13 +29,14 @@ class ProjectsController extends Controller
             'description' => 'required',
              ]);
         
-        // $attributes['owner_id'] = auth()->id();
-
         auth()->user()->projects()->create($attributes);
         
-        // Project::create($attributes);
-        
         return redirect('/projects');
+    }
+
+    public function create ()
+    {
+        return view('projects.create');
     }
     
 }
