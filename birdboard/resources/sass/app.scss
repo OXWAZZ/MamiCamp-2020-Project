@@ -9,6 +9,10 @@
     box-shadow: 0 2px 7px 0 #b0eaff;
 };
 
+.card {
+    @apply .bg-white .p-5 .rounded-lg .shadow;
+}
+
 // Fonts
 // @import url('https://fonts.googleapis.com/css?family=Nunito');
 
