@@ -12,7 +12,7 @@ class UserTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function a_user_has_project ()
+    function a_user_has_project ()
     {
         $user = factory('App\User')->create();
         $this->assertInstanceOf(Collection::class, $user->projects);

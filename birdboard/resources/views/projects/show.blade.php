@@ -16,15 +16,32 @@
             <div class="lg:w-3/4 px-3 mb-8">
                 <div class="mb-6">
                     <h2 class="text-lg text-gray font-normal">Tasks</h2>
-                    <div class="card mb-6">Lorem Ipsum</div>
-                    <div class="card mb-6">Lorem Ipsum</div>
-                    <div class="card mb-6">Lorem Ipsum</div>
-                    <div class="card">Lorem Ipsum</div>
+
+                    @foreach ($project->tasks as $task)
+                        <div class="card mb-3">
+                            <form method="POST" action="{{ $task->path() }}">
+                                @method('PATCH')
+                                @csrf
+                                <div class="flex">
+                                    <input name="body" value="{{ $task->body }} " class="w-full border-0 {{ $task->completed ? 'line-through text-gray' : ''}}">
+                                    <input name="completed" type="checkbox" onchange="this.form.submit()" {{ $task->completed ? 'checked' : ''}}>
+                                </div>
+                            </form>
+                            
+                        </div>
+                    @endforeach
+
+                    <div class="card mb-3">
+                        <form action="{{ $project->path() . '/tasks' }}" method="POST">
+                            @csrf
+                            <input name="body" placeholder="Begin adding tasks..." class="border-0 w-full">
+                        </form>
+                    </div>
                 </div>
 
                 <div>
                     <h2 class="text-lg text-gray font-normal">General Notes</h2>
-                    <textarea class="card w-full " style="min-height: 200px; max-width: 900px;">Lorem Ipsum</textarea>
+                    <textarea class="card w-full border-0" style="min-height: 200px; max-width: 900px;">Lorem Ipsum</textarea>
                 </div>            
             </div>
 
@@ -33,9 +50,5 @@
             </div>
 
         </div>
-    
-
     </main>
-
-    
 @endsection
