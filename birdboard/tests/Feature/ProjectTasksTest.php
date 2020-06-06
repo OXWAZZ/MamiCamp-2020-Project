@@ -82,14 +82,6 @@ class ProjectTasksTest extends TestCase
     /** @test */
     function a_task_require_a_body ()
     {
-        // $this->withoutExceptionHandling();
-
-        // $this->signIn();
-
-        // $project = auth()->user()->projects()->create(
-        //     factory('App\Project')->raw()
-        // );
-
         $project = ProjectFactory::create();
 
         $attributes = factory('App\Task')->raw(['body' => '']);
